@@ -1,6 +1,6 @@
-use std::io::{self, Write};
+use std::io::{self};
 
-fn printAll(emojis: &Vec<char>, water_position: usize) {
+fn print_all(emojis: &Vec<char>, water_position: usize) {
     for (i, emoji) in emojis.iter().enumerate() {
         println!(" -- {} -- ", i + 1); // Para mostrar a posição de cada emoji
         
@@ -47,7 +47,7 @@ fn main() {
 
         // Verifica se o número inserido está dentro do range de posições válidas
         if choice >= 1 && choice <= 3 {
-            printAll(&emojis, choice - 1);
+            print_all(&emojis, choice - 1);
         } else {
             println!("Oops! Por favor, insira uma entrada válida (1, 2 ou 3).");
         }
