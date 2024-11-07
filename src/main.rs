@@ -1,5 +1,6 @@
 use std::process::{Command, Stdio};
 use std::io::{self, Write};
+use std::{thread::sleep, time::Duration};
 
 fn hello(){
     let font_path = "mono9.tlf";
@@ -31,8 +32,45 @@ fn hello(){
 
     // Espera o lolcat processar e finalizar
     lolcat.wait().expect("Erro: o lolcat não conseguiu processar a saída");
+
+    println!("\x1b[38;5;206m-- 🐈💖 --\x1b[0m"); 
+    println!("\x1b[38;5;135mHello uwu!\x1b[0m"); 
+    println!("\x1b[38;5;227mObrigado por utilizar nossos exemplos!\x1b[0m"); 
+    println!("\x1b[38;5;87mtnx ... ><\x1b[0m"); 
+
+}
+
+
+fn carregar_barras() {
+    let total_passos = 20; // Número de passos para completar a barra
+    let intervalo = Duration::from_millis(200); // Intervalo entre cada atualização
+    let cores = [
+        ("\x1b[34m", "Carregando pacotes"),
+        ("\x1b[31m", "Otimizando ambiente"),
+        ("\x1b[33m", "Inicializando módulos"),
+        ("\x1b[36m", "Criando canais de comunicação"),
+        ("\x1b[32m", "Definindo permissões de módulos"),
+    ];
+
+    for passo in 0..=total_passos {
+        let progresso = (passo * 100) / total_passos;
+
+        // Limpa o terminal e posiciona no topo
+        print!("\r\x1b[2J\x1b[H");
+        
+        for (cor, texto) in &cores {
+            println!("{}[{:=>20}] {}%\x1b[0m\t::{}", cor, "=".repeat(passo), progresso, texto);
+        }
+
+        // Atualiza o terminal e aguarda o próximo passo
+        io::stdout().flush().unwrap();
+        sleep(intervalo);
+    }
+
+    println!("\nCarregamento completo!");
 }
 
 fn main() {
+    carregar_barras();
     hello();
 }
