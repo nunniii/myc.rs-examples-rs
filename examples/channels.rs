@@ -46,7 +46,7 @@ fn main() {
                 let mut num = shared_var.lock().unwrap();
                 *num += 2; // Soma 2 à variável
                 tx2.send(*num).unwrap(); // Envia para a thread 2
-                thread::sleep(time::Duration::from_secs(2)); // Espera 2 segundos para reduzir a velocidade
+                thread::sleep(time::Duration::from_secs(1)); // Aguarda 1 segundo antes de enviar novamente
             }
         })
     };
@@ -59,7 +59,7 @@ fn main() {
                 let mut num = shared_var.lock().unwrap();
                 *num *= 2; // Multiplica a variável por 2
                 tx1.send(*num).unwrap(); // Envia para a thread 1
-                thread::sleep(time::Duration::from_secs(2)); // Espera 2 segundos para reduzir a velocidade
+                thread::sleep(time::Duration::from_secs(1)); // Aguarda 1 segundo antes de enviar novamente
             }
         })
     };
@@ -80,8 +80,14 @@ fn main() {
         let num = shared_var.lock().unwrap(); // Destrava o Mutex e acessa o valor
         println!("Valor atual de shared_var após troca: {}", *num);
 
-        // Adiciona um delay entre as trocas de dados para evitar overflow e travamento
-        thread::sleep(time::Duration::from_secs(1)); // Espera 1 segundo para facilitar a visualização do processo
+        // Pergunta ao usuário se deseja continuar ou sair
+        println!("\nPressione 'q' para sair ou qualquer tecla para ordenar a troca 🔃 de dados...");
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).unwrap();
+        if input.trim() == "q" {
+            exit = true;
+            to_quit();
+        }
     }
 
     // Esperando as threads terminarem
