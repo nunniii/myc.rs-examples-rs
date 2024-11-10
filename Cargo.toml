@@ -8,3 +8,4 @@ clap = { version = "4", features = ["derive"] }
 crossterm = "0.28.1"  # Versão estável do crossterm
 tui = { version = "0.19.0", features = ["crossterm"] }
 rand = "0.8"
+rayon = "1.5" # Para funções paralelas
