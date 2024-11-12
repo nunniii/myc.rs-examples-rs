@@ -13,6 +13,8 @@ use tui::{
     Terminal,
 };
 
+use myrust::is_palindrome; 
+
 
 fn clear_screen(handle: &mut dyn std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     // Função para limpar a tela
@@ -139,11 +141,23 @@ fn hello() {
     // Espera o lolcat processar e finalizar
     lolcat.wait().expect("Erro: o lolcat não conseguiu processar a saída");
 
+    let palindrome: &str = "uwu";
+    let is_it_palindrome: bool = is_palindrome(&palindrome);
+    let palindrome_data: &str = {
+        if is_it_palindrome {
+            "é um palíndromo"
+        } else {
+            "não é um palíndromo"
+        }
+    };
+    
+    
     // Mensagens estilizadas com cores
     println!("\x1b[38;5;206m-- 🐈💖 --\x1b[0m");
     println!("\x1b[38;5;135mHello uwu!\x1b[0m");
     println!("\x1b[38;5;227mObrigado por utilizar nossos exemplos!\x1b[0m");
     println!("\x1b[38;5;87mtnx ... ><\x1b[0m");
+    println!("\x1b[38;5;135m{} {}.\x1b[0m", palindrome, palindrome_data);
 }
 
 fn carregar_barras() {

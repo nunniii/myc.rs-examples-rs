@@ -298,6 +298,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "myrust"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "crossterm 0.28.1",
+ "rand",
+ "rayon",
+ "tui",
+]
+
+[[package]]
 name = "parking_lot"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -477,17 +488,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "task_list_cli"
-version = "0.1.0"
-dependencies = [
- "clap",
- "crossterm 0.28.1",
- "rand",
- "rayon",
- "tui",
 ]
 
 [[package]]

@@ -2,8 +2,8 @@ use rayon::prelude::*;
 
 use std::sync::Arc;
 use std::sync::Mutex;
-use std::thread;
-use std::time::Duration;
+// use std::thread;
+// use std::time::Duration;
 
 /// retorna o n-ésimo termo da série de Leibniz para pi
 fn leibniz_term(n: u64) -> f64 {
